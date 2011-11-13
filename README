@@ -1,1 +1,7 @@
 Work in progress !
+
+// Memo
+
+ALTER TABLE `opencart_order` ADD `loyalty` INT NOT NULL AFTER `reward`;
+
+INSERT INTO `opencart_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `serialized`) VALUES (21074, 0, 'loyalty_config', 'loyalty_gain', 0x3130, 0),(21073, 0, 'loyalty_config', 'loyalty_threshold', 0x3432, 0),(21072, 0, 'loyalty_config', 'loyalty_rate', 0x3130, 0),(21081, 0, 'loyalty_config', 'loyalty_voucherid', 0x39, 0),(21545, 0, 'loyalty_config', 'loyalty_order_status', 0x35, 0);

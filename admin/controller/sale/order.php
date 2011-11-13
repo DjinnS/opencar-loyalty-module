@@ -1485,7 +1485,8 @@ class ControllerSaleOrder extends Controller {
 		
 		if (!$this->error) {
 			// loyalty if order status is valid 
-		
+			$this->addLoyalty();
+			
 	  		return true;
 		} else {
 	  		return false;
@@ -2011,6 +2012,16 @@ class ControllerSaleOrder extends Controller {
 		$this->template = 'sale/order_invoice.tpl';
 
 		$this->response->setOutput($this->render());
+	}
+	
+	private function addLoyalty() {
+		$this->load->model('sale/loyalty');
+		
+		// get setting from the setting table
+		$this->data['loyalty_config_rate'] 			=  $this->model_sale_loyalty->getSetting("loyalty_rate");
+		$this->data['loyalty_config_threshold'] 	=  $this->model_sale_loyalty->getSetting("loyalty_threshold");
+		$this->data['loyalty_config_gain'] 			=  $this->model_sale_loyalty->getSetting("loyalty_gain");
+		$this->data['loyalty_config_order_status'] 	=  $this->model_sale_loyalty->getSetting("loyalty_order_status");
 	}
 }
 ?>
