@@ -43,6 +43,8 @@ class ModelTotalLoyalty extends Model {
                 'sort_order' => $this->config->get('loyalty')
 			);
 		}
+		
+		$this->session->data['loyalty'] = $loyalty;
 	}
 }
 ?>

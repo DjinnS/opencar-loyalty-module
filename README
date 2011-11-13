@@ -1,5 +1,7 @@
 Work in progress !
 
+OpenCart v 1.5.1
+
 // Memo
 
 ALTER TABLE `opencart_order` ADD `loyalty` INT NOT NULL AFTER `reward`;
