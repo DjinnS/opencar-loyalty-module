@@ -1238,6 +1238,9 @@ class ControllerSaleOrder extends Controller {
 			$this->data['total'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value']);
 			$this->data['reward'] = $order_info['reward'];
 			
+			// Loyalty
+			$this->data['loyalty'] = $order_info['loyalty'];
+			
 			if ($order_info['total'] < 0) {
 				$this->data['credit'] = $order_info['total'];
 			} else {
@@ -1249,7 +1252,7 @@ class ControllerSaleOrder extends Controller {
 			$this->data['credit_total'] = $this->model_sale_customer->getTotalCustomerTransactionsByOrderId($this->request->get['order_id']); 
 						
 			$this->data['reward_total'] = $this->model_sale_customer->getTotalCustomerRewardsByOrderId($this->request->get['order_id']);
-
+			
 			$this->data['affiliate_firstname'] = $order_info['affiliate_firstname'];
 			$this->data['affiliate_lastname'] = $order_info['affiliate_lastname'];
 			
