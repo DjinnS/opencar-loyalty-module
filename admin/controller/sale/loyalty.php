@@ -42,11 +42,8 @@ class ControllerSaleLoyalty extends Controller {
 		$this->data['loyalty_gain_explain']			= $this->language->get('loyalty_gain_explain');
 		$this->data['loyalty_voucher']				= $this->language->get('loyalty_voucher');
 		$this->data['loyalty_voucher_explain']		= $this->language->get('loyalty_voucher_explain');
-		
-		// get config value
-		$this->data['loyalty_config_rate']			= $this->config->set("loyalty_rate");
-		$this->data['loyalty_config_threshold']		= $this->config->set("loyalty_threshold");
-		$this->data['loyalty_config_gain']			= $this->config->set("loyalty_gain");
+		$this->data['loyalty_order_status']			= $this->language->get('loyalty_order_status');
+		$this->data['loyalty_order_status_explain']	= $this->language->get('loyalty_order_status_explain');
 		
 		// get the currency symbol (right symbol by default)
 		if($this->currency->getSymbolRight($this->currency->getCode())) {
@@ -54,6 +51,9 @@ class ControllerSaleLoyalty extends Controller {
 		} else {
 			$this->data['loyalty_currency'] = $this->currency->getSymbolLeft($this->currency->getCode());
 		}
+
+		// get order status
+		$this->getOrderStatus();
 		
 		// template form remplacement
 		$this->data['button_save']			= $this->language->get('button_save');
@@ -68,9 +68,10 @@ class ControllerSaleLoyalty extends Controller {
 		);
 		
 		// get setting from the setting table
-		$this->data['loyalty_config_rate'] 		=  $this->model_sale_loyalty->getSetting("loyalty_rate");
-		$this->data['loyalty_config_threshold'] =  $this->model_sale_loyalty->getSetting("loyalty_threshold");
-		$this->data['loyalty_config_gain'] 		=  $this->model_sale_loyalty->getSetting("loyalty_gain");
+		$this->data['loyalty_config_rate'] 			=  $this->model_sale_loyalty->getSetting("loyalty_rate");
+		$this->data['loyalty_config_threshold'] 	=  $this->model_sale_loyalty->getSetting("loyalty_threshold");
+		$this->data['loyalty_config_gain'] 			=  $this->model_sale_loyalty->getSetting("loyalty_gain");
+		$this->data['loyalty_config_order_status'] 	=  $this->model_sale_loyalty->getSetting("loyalty_order_status");
 
 		// print errors or success
 		if(isSet($this->session->data['error'])) {
@@ -157,6 +158,20 @@ class ControllerSaleLoyalty extends Controller {
 				'selected'         => ($this->model_sale_loyalty->getSetting("loyalty_voucherid") == $result['voucher_theme_id']) ? 1 : 0,
 			);
 		}
+	}
+	
+	/*
+	*	Name      	: getOrderStatus()
+	*	Parameters	: none
+	*	Rerturn		: 
+	*/
+	private function getOrderStatus() {
+
+		// load model order_status
+		$this->load->model('localisation/order_status');	
+
+		// get order status list
+		$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
 	}
 }
 ?> 

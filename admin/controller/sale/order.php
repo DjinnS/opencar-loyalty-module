@@ -1484,7 +1484,7 @@ class ControllerSaleOrder extends Controller {
 		}
 		
 		if (!$this->error) {
-			// loyalty if order status is valid
+			// loyalty if order status is valid 
 		
 	  		return true;
 		} else {

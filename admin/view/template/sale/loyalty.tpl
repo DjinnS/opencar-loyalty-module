@@ -52,7 +52,17 @@
 				<?php } ?>
 			</td>
 			<td><i><?php echo $loyalty_voucher_explain; ?></i></td>
-            </tr>		  
+		  </tr>
+		  <tr>
+			<td><?php echo $loyalty_order_status; ?> id: <?php echo $loyalty_config_order_status; ?></td>
+             <td>
+				<select name="loyalty_order_statusid">
+                  <?php foreach ($order_statuses as $order_status) { ?>
+	              <option <?php if($order_status['order_status_id'] == $loyalty_config_order_status) echo "selected"; ?> value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                  <?php } ?>
+                </select>
+			</td>
+			<td><i><?php echo $loyalty_order_status_explain; ?></i></td> 
 		  </tr>
         </table>
       </form>

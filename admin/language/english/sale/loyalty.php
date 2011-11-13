@@ -18,6 +18,8 @@ $_['loyalty_gain']         			= 'Valeur de la reduction';
 $_['loyalty_gain_explain'] 			= 'Valeur du bon de réduction gagné une fois le seuil atteint';
 $_['loyalty_voucher']				= 'Bon cadeau';
 $_['loyalty_voucher_explain']		= 'Type de bon cadeau associé à la carte de fidélité';
+$_['loyalty_order_status']			= 'Quand créditeur les points';
+$_['loyalty_order_status_explain']	= 'A quel moment status cr&eacutediter les points fid&eacute;lit&eacute;';
 
 // Error & success
 $_['text_success']					= 'Success: You have modified loyalty !';

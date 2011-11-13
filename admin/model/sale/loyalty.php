@@ -21,6 +21,8 @@ class ModelSaleLoyalty extends Model {
 		$this->db->query("UPDATE ". DB_PREFIX ."setting SET value='". $data['loyalty_gain'] ."', serialized=0		WHERE `group` like 'loyalty_config'  and `key` like 'loyalty_gain' ");
 		
 		$this->db->query("UPDATE ". DB_PREFIX ."setting SET value='". $data['loyalty_voucherid'] ."', serialized=0		WHERE `group` like 'loyalty_config'  and `key` like 'loyalty_voucherid' ");
+		
+		$this->db->query("UPDATE ". DB_PREFIX ."setting SET value='". $data['loyalty_order_statusid'] ."', serialized=0		WHERE `group` like 'loyalty_config'  and `key` like 'loyalty_order_status' ");
 	}
 	
 	/*
