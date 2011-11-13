@@ -1,0 +1,3 @@
+<div>
+	Loyalty
+</div>
