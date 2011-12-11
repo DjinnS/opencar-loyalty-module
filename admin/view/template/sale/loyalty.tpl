@@ -54,7 +54,7 @@
 			<td><i><?php echo $loyalty_voucher_explain; ?></i></td>
 		  </tr>
 		  <tr>
-			<td><?php echo $loyalty_order_status; ?> id: <?php echo $loyalty_config_order_status; ?></td>
+			<td><?php echo $loyalty_order_status; ?></td>
              <td>
 				<select name="loyalty_order_statusid">
                   <?php foreach ($order_statuses as $order_status) { ?>

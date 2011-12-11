@@ -511,6 +511,14 @@ class ModelSaleOrder extends Model {
 			}
 		}
 
+		// add loyalty if order status match
+		$this->load->model('sale/loyalty');
+		if($this->model_sale_loyalty->getSetting("loyalty_order_status") == $data['order_status_id']) {
+			
+			// call getOrder to retreive order information and set loyalty to the customer
+			$this->model_sale_loyalty->setLoyalty($this->getOrder($order_id));
+		}
+		
       	if ($data['notify']) {
 			$language = new Language($order_info['language_directory']);
 			$language->load($order_info['language_filename']);
