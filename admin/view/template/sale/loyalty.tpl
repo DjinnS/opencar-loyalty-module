@@ -27,17 +27,17 @@
         <table class="form">
           <tr>
             <td><?php echo $loyalty_rate; ?></td>
-            <td><input name="loyalty_rate" size="1" value="<? echo $loyalty_config_rate; ?>" /> <?php echo $loyalty_currency; ?> = 1 point</td>
+            <td><input name="loyalty_rate" size="1" value="<?php echo $loyalty_config_rate; ?>" /> <?php echo $loyalty_currency; ?> = 1 point</td>
 			<td><i><?php echo $loyalty_rate_explain; ?></i></td>
           </tr>
           <tr>
             <td><?php echo $loyalty_threshold; ?></td>
-            <td><input name="loyalty_threshold" size="1" value="<? echo $loyalty_config_threshold; ?>" /></td>
+            <td><input name="loyalty_threshold" size="1" value="<?php echo $loyalty_config_threshold; ?>" /></td>
 			<td><i><?php echo $loyalty_threshold_explain; ?></i></td>
           </tr>
           <tr>
             <td><?php echo $loyalty_gain; ?></td>
-            <td><input name="loyalty_gain" size="1" value="<? echo $loyalty_config_gain; ?>" /> <?php echo $loyalty_currency; ?></td>
+            <td><input name="loyalty_gain" size="1" value="<?php echo $loyalty_config_gain; ?>" /> <?php echo $loyalty_currency; ?></td>
 			<td><i><?php echo $loyalty_gain_explain; ?></i></td>
           </tr>
 		  <tr>
@@ -63,6 +63,21 @@
                 </select>
 			</td>
 			<td><i><?php echo $loyalty_order_status_explain; ?></i></td> 
+		  </tr>
+		  <tr>
+			<td><?php echo $loyalty_voucher_from; ?></td>
+            <td><input name="loyalty_voucher_from" size="40" value="<?php echo $loyalty_config_from_name; ?>" /></td>
+			<td><i><?php echo $loyalty_voucher_from_explain; ?></i></td>
+		  </tr>
+		  <tr>
+			<td><?php echo $loyalty_voucher_email; ?></td>
+            <td><input name="loyalty_voucher_email" size="40" value="<?php echo $loyalty_config_from_email; ?>" /></td>
+			<td><i><?php echo $loyalty_voucher_email_explain; ?></i></td>
+		  </tr>
+		  <tr>
+			<td><?php echo $loyalty_voucher_msg; ?></td>
+            <td><textarea cols="40" rows="10" name="loyalty_voucher_msg"><?php echo $loyalty_config_voucher_msg; ?></textarea></td>
+			<td><i><?php echo $loyalty_voucher_msg_explain; ?></i></td>
 		  </tr>
         </table>
       </form>

@@ -33,17 +33,23 @@ class ControllerSaleLoyalty extends Controller {
         $this->template = 'sale/loyalty.tpl';
 		
 		// template remplacement
-		$this->data['heading_title']				= $this->language->get('heading_title');
-		$this->data['loyalty_rate']					= $this->language->get('loyalty_rate');
-		$this->data['loyalty_rate_explain']			= $this->language->get('loyalty_rate_explain');
-		$this->data['loyalty_threshold']			= $this->language->get('loyalty_threshold');
-		$this->data['loyalty_threshold_explain']	= $this->language->get('loyalty_threshold_explain');
-		$this->data['loyalty_gain']					= $this->language->get('loyalty_gain');
-		$this->data['loyalty_gain_explain']			= $this->language->get('loyalty_gain_explain');
-		$this->data['loyalty_voucher']				= $this->language->get('loyalty_voucher');
-		$this->data['loyalty_voucher_explain']		= $this->language->get('loyalty_voucher_explain');
-		$this->data['loyalty_order_status']			= $this->language->get('loyalty_order_status');
-		$this->data['loyalty_order_status_explain']	= $this->language->get('loyalty_order_status_explain');
+		$this->data['heading_title']					= $this->language->get('heading_title');
+		$this->data['loyalty_rate']						= $this->language->get('loyalty_rate');
+		$this->data['loyalty_rate_explain']				= $this->language->get('loyalty_rate_explain');
+		$this->data['loyalty_threshold']				= $this->language->get('loyalty_threshold');
+		$this->data['loyalty_threshold_explain']		= $this->language->get('loyalty_threshold_explain');
+		$this->data['loyalty_gain']						= $this->language->get('loyalty_gain');
+		$this->data['loyalty_gain_explain']				= $this->language->get('loyalty_gain_explain');
+		$this->data['loyalty_voucher']					= $this->language->get('loyalty_voucher');
+		$this->data['loyalty_voucher_explain']			= $this->language->get('loyalty_voucher_explain');
+		$this->data['loyalty_order_status']				= $this->language->get('loyalty_order_status');
+		$this->data['loyalty_order_status_explain']		= $this->language->get('loyalty_order_status_explain');
+		$this->data['loyalty_voucher_from']				= $this->language->get('loyalty_voucher_from');
+		$this->data['loyalty_voucher_from_explain']		= $this->language->get('loyalty_voucher_from_explain');		
+		$this->data['loyalty_voucher_email']			= $this->language->get('loyalty_voucher_email');
+		$this->data['loyalty_voucher_email_explain'] 	= $this->language->get('loyalty_voucher_email_explain');
+		$this->data['loyalty_voucher_msg']				= $this->language->get('loyalty_voucher_msg');
+		$this->data['loyalty_voucher_msg_explain'] 		= $this->language->get('loyalty_voucher_msg_explain');
 		
 		// get the currency symbol (right symbol by default)
 		if($this->currency->getSymbolRight($this->currency->getCode())) {
@@ -72,7 +78,11 @@ class ControllerSaleLoyalty extends Controller {
 		$this->data['loyalty_config_threshold'] 	=  $this->model_sale_loyalty->getSetting("loyalty_threshold");
 		$this->data['loyalty_config_gain'] 			=  $this->model_sale_loyalty->getSetting("loyalty_gain");
 		$this->data['loyalty_config_order_status'] 	=  $this->model_sale_loyalty->getSetting("loyalty_order_status");
-
+		$this->data['loyalty_config_from_email'] 	=  $this->model_sale_loyalty->getSetting("loyalty_from_email");
+		$this->data['loyalty_config_from_name'] 	=  $this->model_sale_loyalty->getSetting("loyalty_from_name");
+		$this->data['loyalty_config_voucher_msg'] 	=  $this->model_sale_loyalty->getSetting("loyalty_voucher_message");
+		
+		
 		// print errors or success
 		if(isSet($this->session->data['error'])) {
 			$this->data['text_error'] = $this->language->get($this->session->data['error']);
@@ -126,6 +136,11 @@ class ControllerSaleLoyalty extends Controller {
 		if ($this->request->post['loyalty_rate'] <= 0) 		$this->session->data['error'] = $this->language->get('error_rate');
 		if ($this->request->post['loyalty_threshold'] <= 0) $this->session->data['error'] = $this->language->get('error_threshold');
 		if ($this->request->post['loyalty_gain'] <= 0) 		$this->session->data['error'] = $this->language->get('error_gain');
+		
+		// you must fill these input, otherwise, disable this module
+		if (sizeof($this->request->post['loyalty_voucher_from']) <= 0)	$this->session->data['error'] = $this->language->get('error_voucher_from');
+		if (sizeof($this->request->post['loyalty_voucher_email']) <= 0)	$this->session->data['error'] = $this->language->get('error_voucher_email');
+		if (sizeof($this->request->post['loyalty_voucher_msg']) <= 0)	$this->session->data['error'] = $this->language->get('error_voucher_message');
 		
 		if ($this->session->data['error']) {
 			return false;

@@ -13,15 +13,18 @@ class ModelTotalLoyalty extends Model {
 	*	Rerturn		: none
 	*/
 	public function getTotal(&$total_data, &$total, &$taxes) {
+
 		$this->load->language('total/loyalty');
+		$this->load->model('checkout/voucher');
 		
 		$loyalty = $total;
-	
+
 		// exclude voucher from loyalty
-		if (isset($this->session->data['vouchers']) && $this->session->data['vouchers']) {
-			foreach ($this->session->data['vouchers'] as $voucher) {
-				$loyalti -= $voucher['amount'];
-			}
+		if (isset($this->session->data['voucher']) && $this->session->data['voucher']) {
+		
+			$voucher_info = $this->model_checkout_voucher->getVoucher($this->session->data['voucher']);
+
+			$loyalty -= $voucher_info['amount'];
 		}
 
 		$loyalty = floor($loyalty / $this->config->get("loyalty_rate"));

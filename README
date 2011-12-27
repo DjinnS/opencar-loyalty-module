@@ -6,7 +6,15 @@ OpenCart v 1.5.1
 
 ALTER TABLE `opencart_order` ADD `loyalty` INT NOT NULL AFTER `reward`;
 
-INSERT INTO `opencart_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `serialized`) VALUES (21074, 0, 'loyalty_config', 'loyalty_gain', 0x3130, 0),(21073, 0, 'loyalty_config', 'loyalty_threshold', 0x3432, 0),(21072, 0, 'loyalty_config', 'loyalty_rate', 0x3130, 0),(21081, 0, 'loyalty_config', 'loyalty_voucherid', 0x39, 0),(21545, 0, 'loyalty_config', 'loyalty_order_status', 0x35, 0);
+// admin
+INSERT INTO `opencart_setting` VALUES(21074, 0, 'loyalty_config', 'loyalty_gain', '10', 0);
+INSERT INTO `opencart_setting` VALUES(21073, 0, 'loyalty_config', 'loyalty_threshold', '20', 0);
+INSERT INTO `opencart_setting` VALUES(21072, 0, 'loyalty_config', 'loyalty_rate', '10', 0);
+INSERT INTO `opencart_setting` VALUES(21081, 0, 'loyalty_config', 'loyalty_voucherid', '9', 0);
+INSERT INTO `opencart_setting` VALUES(21545, 0, 'loyalty_config', 'loyalty_order_status', '5', 0);
+INSERT INTO `opencart_setting` VALUES(21546, 0, 'loyalty_config', 'loyalty_from_name', 'from name', 0);
+INSERT INTO `opencart_setting` VALUES(21547, 0, 'loyalty_config', 'loyalty_from_email', 'from@email.tld', 0);
+INSERT INTO `opencart_setting` VALUES(21548, 0, 'loyalty_config', 'loyalty_voucher_message', 'voucher message', 0);
 
 CREATE TABLE IF NOT EXISTS `opencart_loyalty` (
   `loyalty_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -18,4 +26,5 @@ CREATE TABLE IF NOT EXISTS `opencart_loyalty` (
 
 // ToDo
 
- - substract voucher value for the loyalty amount on the cart and the order
+ - english translation
+
